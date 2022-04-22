@@ -1,18 +1,16 @@
 package foodordering;
 
-import java.math.BigDecimal;
-
 public class Food {
 
     private final String name;
-    private final BigDecimal price;
+    private final Price price;
 
     public Food(String name) {
         this.name = name;
         this.price = null;
     }
 
-    public Food(String name, BigDecimal price) {
+    public Food(String name, Price price) {
         this.name = name;
         this.price = price;
     }
@@ -21,7 +19,7 @@ public class Food {
         return name;
     }
 
-    public BigDecimal getPrice() {
+    public Price getPrice() {
         return price;
     }
 }
