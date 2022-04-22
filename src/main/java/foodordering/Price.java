@@ -8,7 +8,7 @@ public class Price {
     private final BigDecimal value;
     private final Currency currency;
 
-    public Price(BigDecimal value, Currency currency) {
+    private Price(BigDecimal value, Currency currency) {
         this.value = value;
         this.currency = currency;
     }
@@ -20,8 +20,11 @@ public class Price {
         );
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public static Price USD(String value) {
+        return new Price(
+                new BigDecimal(value),
+                Currency.USD
+        );
     }
 
     public Currency getCurrency() {
@@ -30,6 +33,15 @@ public class Price {
 
     public Price multiply(int quantity) {
         BigDecimal newValue = this.value.multiply(BigDecimal.valueOf(quantity));
+        return new Price(newValue, this.currency);
+    }
+
+    public Price add(Price other) {
+        if (!this.currency.equals(other.currency)) {
+            throw new UnsupportedOperationException("Currency Mismatch");
+        }
+
+        BigDecimal newValue = this.value.add(other.value);
         return new Price(newValue, this.currency);
     }
 

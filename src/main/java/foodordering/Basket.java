@@ -1,7 +1,5 @@
 package foodordering;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +22,14 @@ public class Basket {
     }
 
     public Price getTotalPrice() {
-        return getPriceInSGD();
+        return getTotalPriceInSGD();
     }
 
-    private Price getPriceInSGD() {
-        return new Price(
-                BigDecimal.valueOf(this.items.stream()
-                        .map(BasketItem::getPrice)
-                        .filter(price -> SGD.equals(price.getCurrency()))
-                        .mapToDouble(price -> price.getValue().doubleValue())
-                        .sum()).setScale(2, RoundingMode.HALF_UP)
-                , SGD
-        );
+    private Price getTotalPriceInSGD() {
+        return this.items.stream()
+                .map(BasketItem::getPrice)
+                .filter(price -> SGD.equals(price.getCurrency()))
+                .reduce(Price::add)
+                .orElse(Price.SGD("0.00"));
     }
 }

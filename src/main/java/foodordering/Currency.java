@@ -1,5 +1,5 @@
 package foodordering;
 
 public enum Currency {
-    SGD
+    USD, SGD
 }
