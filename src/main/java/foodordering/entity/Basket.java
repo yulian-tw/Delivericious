@@ -1,6 +1,6 @@
 package foodordering.entity;
 
-import foodordering.BasketItem;
+import foodordering.factory.BasketItem;
 import foodordering.Price;
 
 import java.util.ArrayList;

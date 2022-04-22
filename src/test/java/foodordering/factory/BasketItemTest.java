@@ -1,5 +1,6 @@
-package foodordering;
+package foodordering.factory;
 
+import foodordering.Price;
 import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 
