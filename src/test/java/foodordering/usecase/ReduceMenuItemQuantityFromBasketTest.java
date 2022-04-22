@@ -4,6 +4,8 @@ import foodordering.Basket;
 import foodordering.MenuItem;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReduceMenuItemQuantityFromBasketTest {
@@ -16,15 +18,19 @@ class ReduceMenuItemQuantityFromBasketTest {
 
         Basket basket = new Basket();
         MenuItem tomatoSoup = new MenuItem(TOMATO_SOUP);
+        UUID tomatoSoupUuid = tomatoSoup.getUuid();
+
         MenuItem chocolate = new MenuItem(CHOCOLATE);
+        UUID chocolateUuid = chocolate.getUuid();
+
         basket.addItem(tomatoSoup, 2);
         basket.addItem(chocolate, 4);
-        assertEquals(2, basket.getQuantityByFoodName(TOMATO_SOUP));
-        assertEquals(4, basket.getQuantityByFoodName(CHOCOLATE));
+        assertEquals(2, basket.getQuantityByMenuItemId(tomatoSoupUuid));
+        assertEquals(4, basket.getQuantityByMenuItemId(chocolateUuid));
 
-        basket.removeItemByFoodName(CHOCOLATE, 1);
-        assertEquals(2, basket.getQuantityByFoodName(TOMATO_SOUP));
-        assertEquals(3, basket.getQuantityByFoodName(CHOCOLATE));
+        basket.removeItemByMenuItemId(chocolateUuid, 1);
+        assertEquals(2, basket.getQuantityByMenuItemId(tomatoSoupUuid));
+        assertEquals(3, basket.getQuantityByMenuItemId(chocolateUuid));
     }
 
 }

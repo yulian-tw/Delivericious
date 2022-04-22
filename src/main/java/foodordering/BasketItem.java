@@ -1,5 +1,7 @@
 package foodordering;
 
+import java.util.UUID;
+
 public class BasketItem {
 
     private static final int EMPTY_QUANTITY = 0;
@@ -12,8 +14,8 @@ public class BasketItem {
         this.quantity = quantity;
     }
 
-    public String getFoodName() {
-        return this.menuItem.getName();
+    public UUID getMenuItemUuid() {
+        return this.menuItem.getUuid();
     }
 
     public Price getPrice() {

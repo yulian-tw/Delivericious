@@ -2,6 +2,7 @@ package foodordering;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static foodordering.Currency.SGD;
 
@@ -9,8 +10,8 @@ public class Basket {
 
     private final List<BasketItem> items = new ArrayList<>();
 
-    public List<BasketItem> getAllItems() {
-        return this.items;
+    public int getBasketSize() {
+        return this.items.size();
     }
 
     public void addItem(MenuItem menuItem) {
@@ -25,26 +26,26 @@ public class Basket {
 
     private void checkFoodPresent(MenuItem menuItem) {
         this.items.stream()
-                .filter(item -> item.getFoodName().equals(menuItem.getName()))
+                .filter(item -> item.getMenuItemUuid().equals(menuItem.getUuid()))
                 .findFirst()
                 .ifPresent(item -> {
                     throw new UnsupportedOperationException(
-                            String.format("Food with same name [%s] exists in this basket", item.getFoodName())
+                            String.format("Food with same name [%s] exists in this basket", item.getMenuItemUuid())
                     );
                 });
     }
 
-    public int getQuantityByFoodName(String foodName) {
+    public int getQuantityByMenuItemId(UUID uuid) {
         return this.items.stream()
-                .filter(item -> item.getFoodName().equals(foodName))
+                .filter(item -> item.getMenuItemUuid().equals(uuid))
                 .findFirst()
                 .map(BasketItem::getQuantity)
                 .orElseGet(BasketItem::getEmptyQuantity);
     }
 
-    public void removeItemByFoodName(String foodName, int quantity) {
+    public void removeItemByMenuItemId(UUID uuid, int quantity) {
         this.items.stream()
-                .filter(item -> item.getFoodName().equals(foodName))
+                .filter(item -> item.getMenuItemUuid().equals(uuid))
                 .findFirst()
                 .ifPresent(basketItem -> basketItem.reduceQuantity(quantity));
     }
