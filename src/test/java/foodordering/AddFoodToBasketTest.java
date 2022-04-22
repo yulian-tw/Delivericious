@@ -2,8 +2,6 @@ package foodordering;
 
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddFoodToBasketTest {
@@ -15,7 +13,7 @@ class AddFoodToBasketTest {
         basket.addFood(tomatoSoup);
 
         assertEquals(1, basket.getAllItems().size());
-        assertEquals("Tomato Soup", basket.getAllItems().get(0).getName());
+        assertEquals("Tomato Soup", basket.getAllItems().get(0).getFood().getName());
     }
 
     @Test
@@ -25,20 +23,20 @@ class AddFoodToBasketTest {
         basket.addFood(seafoodSalad);
 
         assertEquals(1, basket.getAllItems().size());
-        assertEquals("Seafood Salad", basket.getAllItems().get(0).getName());
+        assertEquals("Seafood Salad", basket.getAllItems().get(0).getFood().getName());
         assertEquals(Price.SGD("12.00"), basket.getTotalPrice());
     }
 
     @Test
-    void shouldAddChocolateIceCreamWithPriceInOtherCurrencyToBasket() {
+    void shouldAddChocolateIceCreamWithQuantityToBasket() {
         Basket basket = new Basket();
         Price iceCreamPrice = Price.SGD("4.00");
         Food chocolateIceCream = new Food("Chocolate Ice Cream", iceCreamPrice);
-        basket.addFood(chocolateIceCream);
+        basket.addFood(chocolateIceCream, 3);
 
         assertEquals(1, basket.getAllItems().size());
-        assertEquals("Chocolate Ice Cream", basket.getAllItems().get(0).getName());
-        assertEquals(Price.SGD("4.00"), basket.getTotalPrice());
+        assertEquals("Chocolate Ice Cream", basket.getAllItems().get(0).getFood().getName());
+        assertEquals(Price.SGD("12.00"), basket.getTotalPrice());
     }
 
 }

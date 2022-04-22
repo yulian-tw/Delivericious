@@ -28,6 +28,11 @@ public class Price {
         return currency;
     }
 
+    public Price multiply(int quantity) {
+        BigDecimal newValue = this.value.multiply(BigDecimal.valueOf(quantity));
+        return new Price(newValue, this.currency);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
