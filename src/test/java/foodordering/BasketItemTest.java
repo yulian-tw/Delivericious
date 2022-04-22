@@ -1,5 +1,6 @@
 package foodordering;
 
+import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;

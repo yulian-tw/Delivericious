@@ -1,5 +1,7 @@
 package foodordering;
 
+import foodordering.entity.MenuItem;
+
 import java.util.UUID;
 
 public class BasketItem {

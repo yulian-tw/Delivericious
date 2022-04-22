@@ -1,4 +1,6 @@
-package foodordering;
+package foodordering.entity;
+
+import foodordering.Price;
 
 import java.util.UUID;
 

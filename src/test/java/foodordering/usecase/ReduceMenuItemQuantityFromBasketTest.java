@@ -1,7 +1,7 @@
 package foodordering.usecase;
 
 import foodordering.Basket;
-import foodordering.MenuItem;
+import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
