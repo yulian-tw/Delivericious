@@ -1,6 +1,7 @@
-package foodordering;
+package foodordering.usecase;
 
-import org.junit.jupiter.api.Disabled;
+import foodordering.Basket;
+import foodordering.Food;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,11 +25,6 @@ class ReduceFoodQuantityFromBasketTest {
         basket.removeFoodByFoodName(CHOCOLATE, 1);
         assertEquals(2, basket.getQuantityByFoodName(TOMATO_SOUP));
         assertEquals(3, basket.getQuantityByFoodName(CHOCOLATE));
-    }
-
-    @Test
-    @Disabled("Maybe blocked at addFood use case")
-    void shouldHandleWhenMultipleFoodWithSameNamePresent() {
     }
 
 }

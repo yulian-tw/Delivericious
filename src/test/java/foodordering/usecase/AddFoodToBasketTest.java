@@ -1,8 +1,12 @@
-package foodordering;
+package foodordering.usecase;
 
+import foodordering.Basket;
+import foodordering.Food;
+import foodordering.Price;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddFoodToBasketTest {
 
@@ -41,6 +45,16 @@ class AddFoodToBasketTest {
         assertEquals(1, basket.getAllItems().size());
         assertEquals(3, basket.getQuantityByFoodName(CHOCOLATE_ICE_CREAM));
         assertEquals(Price.SGD("12.00"), basket.getTotalPrice());
+    }
+
+    @Test
+    void shouldPreventAddingTheFoodWithSameNameAgain() {
+        Basket basket = new Basket();
+        Price iceCreamPrice = Price.SGD("4.00");
+        Food chocolateIceCream = new Food(CHOCOLATE_ICE_CREAM, iceCreamPrice);
+        basket.addFood(chocolateIceCream, 3);
+
+        assertThrows(UnsupportedOperationException.class, () -> basket.addFood(chocolateIceCream, 4));
     }
 
 }

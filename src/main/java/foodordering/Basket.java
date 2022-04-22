@@ -14,11 +14,24 @@ public class Basket {
     }
 
     public void addFood(Food food) {
+        checkFoodPresent(food);
         this.items.add(new BasketItem(food, 1));
     }
 
     public void addFood(Food food, int quantity) {
+        checkFoodPresent(food);
         this.items.add(new BasketItem(food, quantity));
+    }
+
+    private void checkFoodPresent(Food food) {
+        this.items.stream()
+                .filter(item -> item.getFoodName().equals(food.getName()))
+                .findFirst()
+                .ifPresent(item -> {
+                    throw new UnsupportedOperationException(
+                            String.format("Food with same name [%s] exists in this basket", item.getFoodName())
+                    );
+                });
     }
 
     public int getQuantityByFoodName(String foodName) {
