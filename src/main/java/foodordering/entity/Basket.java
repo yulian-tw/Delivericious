@@ -1,15 +1,19 @@
-package foodordering;
+package foodordering.entity;
 
-import foodordering.entity.MenuItem;
+import foodordering.BasketItem;
+import foodordering.Price;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static foodordering.Currency.SGD;
 
 public class Basket {
 
+    private final UUID uuid = UUID.randomUUID();
     private final List<BasketItem> items = new ArrayList<>();
 
     public int getBasketSize() {
@@ -49,7 +53,12 @@ public class Basket {
         this.items.stream()
                 .filter(item -> item.getMenuItemUuid().equals(uuid))
                 .findFirst()
-                .ifPresent(basketItem -> basketItem.reduceQuantity(quantity));
+                .ifPresentOrElse(
+                        basketItem -> basketItem.reduceQuantity(quantity),
+                        () -> {
+                            throw new NoSuchElementException();
+                        }
+                );
     }
 
     public Price getTotalPrice() {
@@ -62,5 +71,24 @@ public class Basket {
                 .filter(price -> SGD.equals(price.getCurrency()))
                 .reduce(Price::add)
                 .orElse(Price.SGD("0.00"));
+    }
+
+    public UUID getBasketId() {
+        return this.uuid;
+    }
+
+    public Basket duplicate() {
+        return Basket.copyOf(this);
+    }
+
+    private static Basket copyOf(Basket existing) {
+        List<BasketItem> clonedBasketItems = existing.items.stream()
+                .map(BasketItem::copyOf)
+                .collect(Collectors.toUnmodifiableList());
+
+        Basket newBasket = new Basket();
+        newBasket.items.addAll(clonedBasketItems);
+
+        return newBasket;
     }
 }

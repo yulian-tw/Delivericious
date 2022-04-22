@@ -1,12 +1,14 @@
 package foodordering.usecase;
 
-import foodordering.Basket;
+import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ReduceMenuItemQuantityFromBasketTest {
 
@@ -31,6 +33,20 @@ class ReduceMenuItemQuantityFromBasketTest {
         basket.removeItemByMenuItemId(chocolateUuid, 1);
         assertEquals(2, basket.getQuantityByMenuItemId(tomatoSoupUuid));
         assertEquals(3, basket.getQuantityByMenuItemId(chocolateUuid));
+
+    }
+
+    @Test
+    void shouldThrowWhenReducingTheQuantityOfUnknownFoodFromBasket() {
+
+        UUID unknown = UUID.randomUUID();
+
+        Basket basket = new Basket();
+        assertThrows(
+                NoSuchElementException.class,
+                () -> basket.removeItemByMenuItemId(unknown, 1)
+        );
+
     }
 
 }

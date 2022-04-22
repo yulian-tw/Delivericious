@@ -16,6 +16,10 @@ public class BasketItem {
         this.quantity = quantity;
     }
 
+    public static BasketItem copyOf(BasketItem existing) {
+        return new BasketItem(existing.menuItem, existing.quantity);
+    }
+
     public UUID getMenuItemUuid() {
         return this.menuItem.getUuid();
     }

@@ -1,6 +1,6 @@
 package foodordering.usecase;
 
-import foodordering.Basket;
+import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
 import foodordering.Price;
 import org.junit.jupiter.api.Test;
