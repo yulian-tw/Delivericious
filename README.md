@@ -29,4 +29,10 @@
     1. basket id should not be the same as duplicated basket id
 6. Review the total price for the current basket
 
-##### Links: 
+##### Links:
+**DDD**
+- [Entity vs Value Object](https://enterprisecraftsmanship.com/posts/entity-vs-value-object-the-ultimate-list-of-differences/)
+- [Representing a collection as a Value Object](https://enterprisecraftsmanship.com/posts/representing-collection-as-value-object/)
+
+**Java Stuffs**
+- [Factory Method versus Constructor](https://www.artima.com/articles/josh-bloch-on-design#part13)
