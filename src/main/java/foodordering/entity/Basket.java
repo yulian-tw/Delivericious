@@ -22,12 +22,12 @@ public class Basket {
 
     public void addItem(MenuItem menuItem) {
         checkFoodPresent(menuItem);
-        this.items.add(new BasketItem(menuItem, 1));
+        this.items.add(BasketItem.createNew(menuItem, 1));
     }
 
     public void addItem(MenuItem menuItem, int quantity) {
         checkFoodPresent(menuItem);
-        this.items.add(new BasketItem(menuItem, quantity));
+        this.items.add(BasketItem.createNew(menuItem, quantity));
     }
 
     private void checkFoodPresent(MenuItem menuItem) {

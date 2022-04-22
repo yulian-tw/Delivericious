@@ -11,9 +11,13 @@ public class BasketItem {
     private final MenuItem menuItem;
     private int quantity;
 
-    public BasketItem(MenuItem menuItem, int quantity) {
+    private BasketItem(MenuItem menuItem, int quantity) {
         this.menuItem = menuItem;
         this.quantity = quantity;
+    }
+
+    public static BasketItem createNew(MenuItem menuItem, int quantity) {
+        return new BasketItem(menuItem, quantity);
     }
 
     public static BasketItem copyOf(BasketItem existing) {

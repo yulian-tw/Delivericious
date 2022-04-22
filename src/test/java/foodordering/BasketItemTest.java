@@ -17,7 +17,7 @@ class BasketItemTest {
 
         when(mockMenuItem.getPrice()).thenReturn(mockPrice);
 
-        underTest = new BasketItem(mockMenuItem, quantity);
+        underTest = BasketItem.createNew(mockMenuItem, quantity);
         underTest.getPrice();
 
         verify(mockPrice, times(1)).multiply(quantity);
