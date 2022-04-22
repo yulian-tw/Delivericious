@@ -1,7 +1,10 @@
 package foodordering;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Food {
 
+    @NotEmpty
     private final String name;
     private final Price price;
 

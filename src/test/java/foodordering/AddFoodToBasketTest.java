@@ -17,7 +17,7 @@ class AddFoodToBasketTest {
         basket.addFood(tomatoSoup);
 
         assertEquals(1, basket.getAllItems().size());
-        assertEquals(TOMATO_SOUP, basket.getAllItems().get(0).getFood().getName());
+        assertEquals(TOMATO_SOUP, basket.getAllItems().get(0).getFoodName());
     }
 
     @Test
@@ -27,7 +27,7 @@ class AddFoodToBasketTest {
         basket.addFood(seafoodSalad);
 
         assertEquals(1, basket.getAllItems().size());
-        assertEquals(SEAFOOD_SALAD, basket.getAllItems().get(0).getFood().getName());
+        assertEquals(SEAFOOD_SALAD, basket.getAllItems().get(0).getFoodName());
         assertEquals(Price.SGD("12.00"), basket.getTotalPrice());
     }
 

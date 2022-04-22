@@ -12,8 +12,8 @@ public class BasketItem {
         this.quantity = quantity;
     }
 
-    public Food getFood() {
-        return this.food;
+    public String getFoodName() {
+        return this.food.getName();
     }
 
     public Price getPrice() {

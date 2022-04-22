@@ -23,7 +23,7 @@ public class Basket {
 
     public int getQuantityByFoodName(String foodName) {
         return this.items.stream()
-                .filter(item -> item.getFood().getName().equals(foodName))
+                .filter(item -> item.getFoodName().equals(foodName))
                 .findFirst()
                 .map(BasketItem::getQuantity)
                 .orElseGet(BasketItem::getEmptyQuantity);
@@ -31,7 +31,7 @@ public class Basket {
 
     public void removeFoodByFoodName(String foodName, int quantity) {
         this.items.stream()
-                .filter(item -> item.getFood().getName().equals(foodName))
+                .filter(item -> item.getFoodName().equals(foodName))
                 .findFirst()
                 .ifPresent(basketItem -> basketItem.reduceQuantity(quantity));
     }
