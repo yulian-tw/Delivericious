@@ -21,6 +21,21 @@ public class Basket {
         this.items.add(new BasketItem(food, quantity));
     }
 
+    public int getQuantityByFoodName(String foodName) {
+        return this.items.stream()
+                .filter(item -> item.getFood().getName().equals(foodName))
+                .findFirst()
+                .map(BasketItem::getQuantity)
+                .orElseGet(BasketItem::getEmptyQuantity);
+    }
+
+    public void removeFoodByFoodName(String foodName, int quantity) {
+        this.items.stream()
+                .filter(item -> item.getFood().getName().equals(foodName))
+                .findFirst()
+                .ifPresent(basketItem -> basketItem.reduceQuantity(quantity));
+    }
+
     public Price getTotalPrice() {
         return getTotalPriceInSGD();
     }
