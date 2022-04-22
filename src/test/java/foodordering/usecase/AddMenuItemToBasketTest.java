@@ -1,14 +1,14 @@
 package foodordering.usecase;
 
 import foodordering.Basket;
-import foodordering.Food;
+import foodordering.MenuItem;
 import foodordering.Price;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddFoodToBasketTest {
+class AddMenuItemToBasketTest {
 
     private static final String TOMATO_SOUP = "Tomato Soup";
     private static final String SEAFOOD_SALAD = "Seafood Salad";
@@ -17,8 +17,8 @@ class AddFoodToBasketTest {
     @Test
     void shouldAddTomatoSoupToBasket() {
         Basket basket = new Basket();
-        Food tomatoSoup = new Food(TOMATO_SOUP);
-        basket.addFood(tomatoSoup);
+        MenuItem tomatoSoup = new MenuItem(TOMATO_SOUP);
+        basket.addItem(tomatoSoup);
 
         assertEquals(1, basket.getAllItems().size());
         assertEquals(TOMATO_SOUP, basket.getAllItems().get(0).getFoodName());
@@ -27,8 +27,8 @@ class AddFoodToBasketTest {
     @Test
     void shouldAddSeafoodSaladWithPriceToBasket() {
         Basket basket = new Basket();
-        Food seafoodSalad = new Food(SEAFOOD_SALAD, Price.SGD("12.00"));
-        basket.addFood(seafoodSalad);
+        MenuItem seafoodSalad = new MenuItem(SEAFOOD_SALAD, Price.SGD("12.00"));
+        basket.addItem(seafoodSalad);
 
         assertEquals(1, basket.getAllItems().size());
         assertEquals(SEAFOOD_SALAD, basket.getAllItems().get(0).getFoodName());
@@ -39,8 +39,8 @@ class AddFoodToBasketTest {
     void shouldAddChocolateIceCreamWithQuantityToBasket() {
         Basket basket = new Basket();
         Price iceCreamPrice = Price.SGD("4.00");
-        Food chocolateIceCream = new Food(CHOCOLATE_ICE_CREAM, iceCreamPrice);
-        basket.addFood(chocolateIceCream, 3);
+        MenuItem chocolateIceCream = new MenuItem(CHOCOLATE_ICE_CREAM, iceCreamPrice);
+        basket.addItem(chocolateIceCream, 3);
 
         assertEquals(1, basket.getAllItems().size());
         assertEquals(3, basket.getQuantityByFoodName(CHOCOLATE_ICE_CREAM));
@@ -51,10 +51,10 @@ class AddFoodToBasketTest {
     void shouldPreventAddingTheFoodWithSameNameAgain() {
         Basket basket = new Basket();
         Price iceCreamPrice = Price.SGD("4.00");
-        Food chocolateIceCream = new Food(CHOCOLATE_ICE_CREAM, iceCreamPrice);
-        basket.addFood(chocolateIceCream, 3);
+        MenuItem chocolateIceCream = new MenuItem(CHOCOLATE_ICE_CREAM, iceCreamPrice);
+        basket.addItem(chocolateIceCream, 3);
 
-        assertThrows(UnsupportedOperationException.class, () -> basket.addFood(chocolateIceCream, 4));
+        assertThrows(UnsupportedOperationException.class, () -> basket.addItem(chocolateIceCream, 4));
     }
 
 }

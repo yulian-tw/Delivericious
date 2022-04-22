@@ -4,20 +4,20 @@ public class BasketItem {
 
     private static final int EMPTY_QUANTITY = 0;
 
-    private final Food food;
+    private final MenuItem menuItem;
     private int quantity;
 
-    public BasketItem(Food food, int quantity) {
-        this.food = food;
+    public BasketItem(MenuItem menuItem, int quantity) {
+        this.menuItem = menuItem;
         this.quantity = quantity;
     }
 
     public String getFoodName() {
-        return this.food.getName();
+        return this.menuItem.getName();
     }
 
     public Price getPrice() {
-        return this.food.getPrice().multiply(quantity);
+        return this.menuItem.getPrice().multiply(quantity);
     }
 
     public int getQuantity() {

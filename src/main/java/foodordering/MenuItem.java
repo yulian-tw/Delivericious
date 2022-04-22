@@ -1,17 +1,17 @@
 package foodordering;
 
-public class Food {
+public class MenuItem {
 
     private final String name;
     private final Price price;
 
-    public Food(String name) {
+    public MenuItem(String name) {
         checkName(name);
         this.name = name;
         this.price = null;
     }
 
-    public Food(String name, Price price) {
+    public MenuItem(String name, Price price) {
         checkName(name);
         this.name = name;
         this.price = price;

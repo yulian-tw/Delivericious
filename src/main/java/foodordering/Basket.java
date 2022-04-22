@@ -13,19 +13,19 @@ public class Basket {
         return this.items;
     }
 
-    public void addFood(Food food) {
-        checkFoodPresent(food);
-        this.items.add(new BasketItem(food, 1));
+    public void addItem(MenuItem menuItem) {
+        checkFoodPresent(menuItem);
+        this.items.add(new BasketItem(menuItem, 1));
     }
 
-    public void addFood(Food food, int quantity) {
-        checkFoodPresent(food);
-        this.items.add(new BasketItem(food, quantity));
+    public void addItem(MenuItem menuItem, int quantity) {
+        checkFoodPresent(menuItem);
+        this.items.add(new BasketItem(menuItem, quantity));
     }
 
-    private void checkFoodPresent(Food food) {
+    private void checkFoodPresent(MenuItem menuItem) {
         this.items.stream()
-                .filter(item -> item.getFoodName().equals(food.getName()))
+                .filter(item -> item.getFoodName().equals(menuItem.getName()))
                 .findFirst()
                 .ifPresent(item -> {
                     throw new UnsupportedOperationException(
@@ -42,7 +42,7 @@ public class Basket {
                 .orElseGet(BasketItem::getEmptyQuantity);
     }
 
-    public void removeFoodByFoodName(String foodName, int quantity) {
+    public void removeItemByFoodName(String foodName, int quantity) {
         this.items.stream()
                 .filter(item -> item.getFoodName().equals(foodName))
                 .findFirst()

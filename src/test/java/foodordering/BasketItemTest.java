@@ -11,12 +11,12 @@ class BasketItemTest {
     @Test
     void getPriceShouldPassTheQuantityToFood() {
         int quantity = 3;
-        Food mockFood = mock(Food.class);
+        MenuItem mockMenuItem = mock(MenuItem.class);
         Price mockPrice = mock(Price.class);
 
-        when(mockFood.getPrice()).thenReturn(mockPrice);
+        when(mockMenuItem.getPrice()).thenReturn(mockPrice);
 
-        underTest = new BasketItem(mockFood, quantity);
+        underTest = new BasketItem(mockMenuItem, quantity);
         underTest.getPrice();
 
         verify(mockPrice, times(1)).multiply(quantity);
