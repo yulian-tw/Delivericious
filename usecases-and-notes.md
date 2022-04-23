@@ -32,9 +32,25 @@
    - available coupons as input
    - tomato soup is in a SOUP category
    ```
+   - [ ] Create Coupon
+   - [ ] Introduce MenuCategory, BasketItem.belongToMenuCategory()
+   - [ ] Create CouponSuggestionService.suggestCoupons(Basket basket, List<Coupon> allAvailableCoupons)
+      1. Use operational term for **Domain Service**.
 
-10. xxx
-   
+10. Pay when checkout
+    - [ ] check the notes...
+    - [ ] `paymentService.pay(basket.totalPrice())`, `PaymentFailedException`
+
+11. Notify OrderingSystem (another bounded context) when basket checkout is completed.
+    - [ ] Add BasketStatus.NEW, BasketStatus.CHECKED_OUT
+    - [ ] Create CheckoutService(EventPublisher, PaymentService) where EventPublisher, PaymentService in another grouping.
+    - [ ] Create specific Event for publishing
+    - [ ] `checkoutService.checkout(Basket basket) { eventPublisher.publish(new BasketCheckedOutEvent(basket)) }`
+       1. Use Observer Pattern or event listeners, with publish/subscribe **Domain event**
+       2. Event named in past tense because it already happened.
+       3. To capture changes across bounded context.
+       4. Events are immutable and you need another event to cancel the previous one.
+
 ## Reference Links
 **DDD**
 - [Event Storming Glossary](https://github.com/ddd-crew/eventstorming-glossary-cheat-sheet)
