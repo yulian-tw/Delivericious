@@ -1,7 +1,8 @@
 package foodordering.entity;
 
-import foodordering.factory.BasketItem;
+import foodordering.BasketQuantityExceedException;
 import foodordering.Price;
+import foodordering.factory.BasketItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 import static foodordering.Currency.SGD;
 
 public class Basket {
+
+    private static final int BASKET_QUANTITY_LIMIT = 100;
 
     private final UUID uuid = UUID.randomUUID();
     private final List<BasketItem> items = new ArrayList<>();
@@ -25,9 +28,23 @@ public class Basket {
         this.items.add(BasketItem.createNew(menuItem, 1));
     }
 
-    public void addItem(MenuItem menuItem, int quantity) {
+    public void addItem(MenuItem menuItem, int quantity) throws BasketQuantityExceedException {
         checkFoodPresent(menuItem);
+        checkNewBasketQuantity(quantity);
         this.items.add(BasketItem.createNew(menuItem, quantity));
+    }
+
+    private void checkNewBasketQuantity(int quantityToAdd) throws BasketQuantityExceedException {
+        int newQuantity = getCurrentTotalQuantity() + quantityToAdd;
+        if (newQuantity > BASKET_QUANTITY_LIMIT) {
+            throw new BasketQuantityExceedException();
+        }
+    }
+
+    private int getCurrentTotalQuantity() {
+        return this.items.stream()
+                .map(BasketItem::getQuantity)
+                .reduce(0, Integer::sum);
     }
 
     private void checkFoodPresent(MenuItem menuItem) {
@@ -91,4 +108,5 @@ public class Basket {
 
         return newBasket;
     }
+
 }

@@ -1,7 +1,8 @@
 package foodordering.usecase;
 
-import foodordering.entity.Basket;
+import foodordering.BasketQuantityExceedException;
 import foodordering.Price;
+import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class CloneBasketTest {
 
     @Test
-    void shouldCloneBasketIntoBasketWithDifferentBasketIdAndAlsoDifferentBasketItem() {
+    void shouldCloneBasketIntoBasketWithDifferentBasketIdAndAlsoDifferentBasketItem() throws BasketQuantityExceedException {
 
         Basket existing = new Basket();
         MenuItem seafoodSalad = new MenuItem("Seafood Salad", Price.SGD("10"));

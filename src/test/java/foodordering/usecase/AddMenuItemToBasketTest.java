@@ -1,8 +1,10 @@
 package foodordering.usecase;
 
+import foodordering.BasketQuantityExceedException;
+import foodordering.Price;
 import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
-import foodordering.Price;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +34,7 @@ class AddMenuItemToBasketTest {
     }
 
     @Test
-    void shouldAddChocolateIceCreamWithQuantityToBasket() {
+    void shouldAddChocolateIceCreamWithQuantityToBasket() throws BasketQuantityExceedException {
         Basket basket = new Basket();
         Price iceCreamPrice = Price.SGD("4.00");
         MenuItem chocolateIceCream = new MenuItem("Chocolate Ice Cream", iceCreamPrice);
@@ -44,13 +46,46 @@ class AddMenuItemToBasketTest {
     }
 
     @Test
-    void shouldPreventAddingTheFoodWithSameNameAgain() {
+    void shouldPreventAddingTheFoodWithSameNameAgain() throws BasketQuantityExceedException {
         Basket basket = new Basket();
         Price iceCreamPrice = Price.SGD("4.00");
         MenuItem chocolateIceCream = new MenuItem("Chocolate Ice Cream", iceCreamPrice);
         basket.addItem(chocolateIceCream, 3);
 
         assertThrows(UnsupportedOperationException.class, () -> basket.addItem(chocolateIceCream, 4));
+    }
+
+    @Test
+    void shouldPreventAddingTheFoodExceedingLimitOf100() throws BasketQuantityExceedException {
+        Price seafoodPrice = Price.SGD("20.00");
+        MenuItem seafoodPlatter = new MenuItem("Seafood Platter", seafoodPrice);
+        Price iceCreamPrice = Price.SGD("4.00");
+        MenuItem chocolateIceCream = new MenuItem("Chocolate Ice Cream", iceCreamPrice);
+
+        Basket basket = new Basket();
+        basket.addItem(seafoodPlatter, 98);
+
+        assertThrows(
+                BasketQuantityExceedException.class,
+                () -> basket.addItem(chocolateIceCream, 3)
+        );
+    }
+
+    @Test
+    @Disabled
+    void shouldPreventAddingTheFoodExceedingLimitOf100AfterAddWithDefaultQuantity1() throws BasketQuantityExceedException {
+        Price seafoodPrice = Price.SGD("20.00");
+        MenuItem seafoodPlatter = new MenuItem("Seafood Platter", seafoodPrice);
+        Price iceCreamPrice = Price.SGD("4.00");
+        MenuItem chocolateIceCream = new MenuItem("Chocolate Ice Cream", iceCreamPrice);
+
+        Basket basket = new Basket();
+        basket.addItem(seafoodPlatter, 100);
+
+        assertThrows(
+                BasketQuantityExceedException.class,
+                () -> basket.addItem(chocolateIceCream)
+        );
     }
 
 }

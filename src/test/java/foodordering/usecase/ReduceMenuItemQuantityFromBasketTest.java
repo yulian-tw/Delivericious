@@ -1,5 +1,6 @@
 package foodordering.usecase;
 
+import foodordering.BasketQuantityExceedException;
 import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class ReduceMenuItemQuantityFromBasketTest {
     private static final String CHOCOLATE = "Chocolate";
 
     @Test
-    void shouldReduceTheQuantityOfTheRightFoodFromBasket() {
+    void shouldReduceTheQuantityOfTheRightFoodFromBasket() throws BasketQuantityExceedException {
 
         Basket basket = new Basket();
         MenuItem tomatoSoup = new MenuItem(TOMATO_SOUP);
