@@ -4,7 +4,6 @@ import foodordering.BasketQuantityExceedException;
 import foodordering.Price;
 import foodordering.entity.Basket;
 import foodordering.entity.MenuItem;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddMenuItemToBasketTest {
 
     @Test
-    void shouldAddTomatoSoupToBasketWithDefaultQuantityEqualsOne() {
+    void shouldAddTomatoSoupToBasketWithDefaultQuantityEqualsOne() throws BasketQuantityExceedException {
         Basket basket = new Basket();
         MenuItem tomatoSoup = new MenuItem("Tomato Soup");
         basket.addItem(tomatoSoup);
@@ -23,7 +22,7 @@ class AddMenuItemToBasketTest {
     }
 
     @Test
-    void shouldAddSeafoodSaladWithPriceToBasketWithDefaultQuantityEqualsOne() {
+    void shouldAddSeafoodSaladWithPriceToBasketWithDefaultQuantityEqualsOne() throws BasketQuantityExceedException {
         Basket basket = new Basket();
         MenuItem seafoodSalad = new MenuItem("Seafood Salad", Price.SGD("12.00"));
         basket.addItem(seafoodSalad);
@@ -72,7 +71,6 @@ class AddMenuItemToBasketTest {
     }
 
     @Test
-    @Disabled
     void shouldPreventAddingTheFoodExceedingLimitOf100AfterAddWithDefaultQuantity1() throws BasketQuantityExceedException {
         Price seafoodPrice = Price.SGD("20.00");
         MenuItem seafoodPlatter = new MenuItem("Seafood Platter", seafoodPrice);

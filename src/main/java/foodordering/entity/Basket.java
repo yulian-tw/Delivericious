@@ -23,9 +23,9 @@ public class Basket {
         return this.items.size();
     }
 
-    public void addItem(MenuItem menuItem) {
+    public void addItem(MenuItem menuItem) throws BasketQuantityExceedException {
         checkFoodPresent(menuItem);
-        this.items.add(BasketItem.createNew(menuItem, 1));
+        this.addItem(menuItem, 1);
     }
 
     public void addItem(MenuItem menuItem, int quantity) throws BasketQuantityExceedException {
