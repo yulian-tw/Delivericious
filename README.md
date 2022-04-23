@@ -20,6 +20,7 @@
    When user trying to add 3 seafood salads,
    Then this request should be rejected.
    ```
+8. Save the basket (using `hashmap <id, data>`)
 
 ##### Notes:
 1. Add  tomato soup to Basket

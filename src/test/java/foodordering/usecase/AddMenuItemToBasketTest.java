@@ -2,7 +2,7 @@ package foodordering.usecase;
 
 import foodordering.BasketQuantityExceedException;
 import foodordering.Price;
-import foodordering.entity.Basket;
+import foodordering.entity.basket.Basket;
 import foodordering.entity.MenuItem;
 import org.junit.jupiter.api.Test;
 

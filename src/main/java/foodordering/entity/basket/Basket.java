@@ -1,8 +1,8 @@
-package foodordering.entity;
+package foodordering.entity.basket;
 
 import foodordering.BasketQuantityExceedException;
 import foodordering.Price;
-import foodordering.factory.BasketItem;
+import foodordering.entity.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;

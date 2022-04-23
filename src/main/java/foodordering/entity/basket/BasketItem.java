@@ -1,11 +1,11 @@
-package foodordering.factory;
+package foodordering.entity.basket;
 
 import foodordering.Price;
 import foodordering.entity.MenuItem;
 
 import java.util.UUID;
 
-public class BasketItem {
+class BasketItem {
 
     private static final int EMPTY_QUANTITY = 0;
 
@@ -17,31 +17,31 @@ public class BasketItem {
         this.quantity = quantity;
     }
 
-    public static BasketItem createNew(MenuItem menuItem, int quantity) {
+    static BasketItem createNew(MenuItem menuItem, int quantity) {
         return new BasketItem(menuItem, quantity);
     }
 
-    public static BasketItem copyOf(BasketItem existing) {
+    static BasketItem copyOf(BasketItem existing) {
         return new BasketItem(existing.menuItem, existing.quantity);
     }
 
-    public UUID getMenuItemUuid() {
+    UUID getMenuItemUuid() {
         return this.menuItem.getUuid();
     }
 
-    public Price getPrice() {
+    Price getPrice() {
         return this.menuItem.getPrice().multiply(quantity);
     }
 
-    public int getQuantity() {
+    int getQuantity() {
         return quantity;
     }
 
-    public static Integer getEmptyQuantity() {
+    static Integer getEmptyQuantity() {
         return EMPTY_QUANTITY;
     }
 
-    public void reduceQuantity(int quantity) {
+    void reduceQuantity(int quantity) {
         this.quantity = this.quantity - quantity;
     }
 }
