@@ -1,8 +1,8 @@
-package foodordering.entity;
+package foodordering.domain.entity;
 
-import foodordering.BasketQuantityExceedException;
-import foodordering.Price;
-import foodordering.entity.basket.Basket;
+import foodordering.domain.BasketQuantityExceedException;
+import foodordering.domain.Price;
+import foodordering.domain.entity.basket.Basket;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

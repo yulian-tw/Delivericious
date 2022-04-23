@@ -1,4 +1,4 @@
-package foodordering;
+package foodordering.domain;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
-package foodordering.entity.basket;
+package foodordering.domain.entity.basket;
 
-import foodordering.Price;
-import foodordering.entity.MenuItem;
+import foodordering.domain.Price;
+import foodordering.domain.entity.MenuItem;
 
 import java.util.UUID;
 

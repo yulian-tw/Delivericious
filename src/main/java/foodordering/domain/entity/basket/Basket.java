@@ -1,8 +1,8 @@
-package foodordering.entity.basket;
+package foodordering.domain.entity.basket;
 
-import foodordering.BasketQuantityExceedException;
-import foodordering.Price;
-import foodordering.entity.MenuItem;
+import foodordering.domain.BasketQuantityExceedException;
+import foodordering.domain.Price;
+import foodordering.domain.entity.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static foodordering.Currency.SGD;
+import static foodordering.domain.Currency.SGD;
 
 public class Basket {
 

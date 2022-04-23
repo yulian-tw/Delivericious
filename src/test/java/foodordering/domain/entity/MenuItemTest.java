@@ -1,6 +1,6 @@
-package foodordering.entity;
+package foodordering.domain.entity;
 
-import foodordering.Price;
+import foodordering.domain.Price;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

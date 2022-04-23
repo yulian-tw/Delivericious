@@ -37,6 +37,10 @@
 6. Review the total price for the current basket
 7. Limit quantity of the basket items to 100
    1. Treat Exceptions as first class citizen, should create specific exception, use ubiquitous language.
+8. Save the basket (using `hashmap <id, data>`)
+   1. Hide the BasketItem from external world. (Basket as aggregate root)
+   2. Use repository to allow retrieval and persistence as separate concern (**Persistence Ignorance Facade**)
+      1. Aggregate could save into singleton repository, but it's required to understand the data model.
 
 ##### Links:
 **DDD**

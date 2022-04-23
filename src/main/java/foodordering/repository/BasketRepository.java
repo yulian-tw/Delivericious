@@ -1,12 +1,12 @@
-package foodordering;
+package foodordering.repository;
 
-import foodordering.entity.basket.Basket;
+import foodordering.domain.entity.basket.Basket;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class BasketStorage {
+public class BasketRepository {
 
     private final Map<UUID, Basket> baskets = new HashMap<>();
 

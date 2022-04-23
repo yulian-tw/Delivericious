@@ -1,6 +1,6 @@
-package foodordering.entity;
+package foodordering.domain.entity;
 
-import foodordering.Price;
+import foodordering.domain.Price;
 
 import java.util.UUID;
 
